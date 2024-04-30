@@ -83,36 +83,6 @@ def journal():
 
     return render_template('journal.html', journal=journal_details, related_articles=related_articles)
 
-# @app.route('/journal')
-# def journal():
-#     title = request.args.get('title')
-#     if not title:
-#         return render_template('site.html', categories=categories, error="Please select a journal.")
-
-#     # URL-decode the title in case it includes special characters
-#     title = urllib.parse.unquote(title)
-    
-#     # Find the journal with the matching title
-#     journal_details = my_journals.journal_info[my_journals.journal_info['Title'] == title]
-    
-#     # If no journal is found, return a 404 error page
-#     if journal_details.empty:
-#         return render_template('404.html', title=title)
-
-#     # Convert to dictionary for easier access in the template
-#     journal_details = journal_details.iloc[0].to_dict()
-    
-#     # Get related articles based on network proximity
-#     neighbors = list(G.neighbors(title))  # Assuming `title` is exactly how nodes are named in G
-    
-#     # Sort neighbors by edge weight, descending order
-#     neighbors_by_weight = sorted(neighbors, key=lambda x: G[title][x]['weight'], reverse=True)
-    
-#     # Get the top 3 neighbors as related articles
-#     related_articles = neighbors_by_weight[:3]
-    
-#     return render_template('journal.html', journal=journal_details, related_articles=related_articles)
-
 
 if __name__ == '__main__':
     app.run(debug=True, port='8000')
