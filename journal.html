@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ journal.Title }}</title>
+</head>
+<body>
+    <h1>Journal Details: {{ journal.Title }}</h1>
+    <ul>
+        <li>Type: {{ journal.Type }}</li>
+        <li>Issn: {{ journal.Issn }}</li>
+        <li>SJR: {{ journal.SJR }}</li>
+        <li>SJR Best Quartile: {{ journal['SJR Best Quartile'] }}</li>
+        <li>H index: {{ journal['H index'] }}</li>
+        <li>Total Docs. (2022): {{ journal['Total Docs. (2022)'] }}</li>
+        <li>Total Docs. (3years): {{ journal['Total Docs. (3years)'] }}</li>
+        <li>Total Refs.: {{ journal['Total Refs.'] }}</li>
+        <li>Total Cites (3years): {{ journal['Total Cites (3years)'] }}</li>
+        <li>Citable Docs. (3years): {{ journal['Citable Docs. (3years)'] }}</li>
+        <li>Cites / Doc. (2years): {{ journal['Cites / Doc. (2years)'] }}</li>
+        <li>Ref. / Doc.: {{ journal['Ref. / Doc.'] }}</li>
+        <li>Country: {{ journal.Country }}</li>
+        <li>Publisher: {{ journal.Publisher }}</li>
+        <li>Categories: {{ journal.Categories|join(', ') }}</li>
+        <li>Areas: {{ journal.Areas }}</li>
+    </ul>
+    <a href="{{ url_for('site') }}">Back to category selection</a>
+
+    <h2>Recommended Articles</h2>
+    <ul>
+        {% for related_title in related_articles %}
+            <li><a href="{{ url_for('journal', title=related_title|urlencode) }}">{{ related_title }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('site') }}">Back to category selection</a>
+</body>
+</html>

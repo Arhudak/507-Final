@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+</head>
+<body>
+    <h1>Articles in Selected Categories: {{ selected_categories|join(', ') }}</h1>
+    
+    <h2>Articles in Both Categories</h2>
+    {% if both_categories %}
+        <ul>
+            {% for journal in both_categories %}
+                <li><a href="{{ url_for('journal', title=journal|urlencode) }}">{{ journal }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles found in both categories.</p>
+    {% endif %}
+    
+    <h2>Articles in Only {{ selected_categories[0] }}</h2>
+    {% if only_category1 %}
+        <ul>
+            {% for journal in only_category1 %}
+                <li><a href="{{ url_for('journal', title=journal|urlencode) }}">{{ journal }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles found in only {{ selected_categories[0] }}.</p>
+    {% endif %}
+    
+    <h2>Articles in Only {{ selected_categories[1] }}</h2>
+    {% if only_category2 %}
+        <ul>
+            {% for journal in only_category2 %}
+                <li><a href="{{ url_for('journal', title=journal|urlencode) }}">{{ journal }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles found in only {{ selected_categories[1] }}.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('site') }}">Back to category selection</a>
+</body>
+</html>

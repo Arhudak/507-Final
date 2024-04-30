@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+</head>
+<body>
+    <h1>Select 2 Categories</h1>
+    <form action="/category" method="POST">
+        <div class="container">
+            <select name="category1">
+                <option value="" selected disabled>Select a category...</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <select name="category2">
+                <option value="" selected disabled>Select a category...</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <br>
+        </div>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="submit" value="Submit" class="submit-button">
+    </form>
+</body>
+</html>
